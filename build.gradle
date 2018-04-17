@@ -1,0 +1,34 @@
+apply plugin: 'groovy'
+apply plugin: 'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+apply plugin: 'org.hidetake.ssh'
+apply plugin: 'project-report'
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'org.akhikhl.gretty:gretty:+'
+		classpath 'org.hidetake:gradle-ssh-plugin:2.8.0'
+	}
+}
+
+repositories {
+	mavenCentral()
+  jcenter()
+}
+
+ext {
+	camelVersion = '2.18.2'
+}
+
+dependencies {
+	compile "org.apache.camel:camel-core:${camelVersion}"
+	compile "org.apache.camel:camel-mail:${camelVersion}"
+	compile "org.apache.camel:camel-telegram:${camelVersion}"
+	compile 'org.codehaus.groovy:groovy-all:2.4.10'
+	compile "ch.qos.logback:logback-classic:1.2.1"
+	testCompile "org.apache.camel:camel-test:${camelVersion}"
+}
